@@ -20,6 +20,7 @@ class StripeTerminal {
   DiscoveryMethodBluetoothScan = RNStripeTerminal.DiscoveryMethodBluetoothScan;
   DiscoveryMethodBluetoothProximity =
     RNStripeTerminal.DiscoveryMethodBluetoothProximity;
+  DiscoveryMethodUSB = RNStripeTerminal.DiscoveryMethodUSB;
 
   // Payment intent statuses
   PaymentIntentStatusRequiresPaymentMethod =

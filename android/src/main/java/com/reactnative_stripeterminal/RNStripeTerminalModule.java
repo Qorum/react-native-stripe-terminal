@@ -573,6 +573,68 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
         });
     }
 
+    private SetupIntentParameters.Builder getSetupParams(ReadableMap options) {
+        SetupIntentParameters.Builder setupIntentParamBuilder = new SetupIntentParameters.Builder();
+        if (options != null) {
+            if (options.hasKey(ON_BEHALF_OF)) {
+                setupIntentParamBuilder.setOnBehalfOf(options.getString(ON_BEHALF_OF));
+            }
+
+            if (options.hasKey(CUSTOMER)) {
+                setupIntentParamBuilder.setCustomer(options.getString(CUSTOMER));
+            }
+
+            if (options.hasKey(DESCRIPTION)) {
+                setupIntentParamBuilder.setDescription(options.getString(DESCRIPTION));
+            }
+
+            if (options.hasKey(USAGE)) {
+                setupIntentParamBuilder.setUsage(options.getString(USAGE));
+            }
+
+            if (options.hasKey(METADATA)) {
+                ReadableMap map = options.getMap(METADATA);
+                HashMap<String, String> metaDataMap = new HashMap<>();
+
+                if (map != null) {
+                    ReadableMapKeySetIterator iterator = map.keySetIterator();
+                    while (iterator.hasNextKey()) {
+                        String key = iterator.nextKey();
+                        String val = map.getString(key);
+                        metaDataMap.put(key, val);
+                    }
+                }
+
+                setupIntentParamBuilder.setMetadata(metaDataMap);
+            }
+        }
+
+        return setupIntentParamBuilder;
+    }
+
+    @ReactMethod
+    public void createSetupIntent(ReadableMap options) {
+        SetupIntentParameters.Builder paramsBuilder = getSetupParams(options);
+
+        Terminal.getInstance().createSetupIntent(paramsBuilder.build(), new SetupIntentCallback() {
+            @Override
+            public void onSuccess(@Nonnull SetupIntent setupIntent) {
+                lastSetupIntent = setupIntent;
+                WritableMap setupIntentCreateRespMap = Arguments.createMap();
+                setupIntentCreateRespMap.putMap(INTENT, serializeSetupIntent(setupIntent));
+                sendEventWithName(EVENT_SETUP_INTENT_CREATION, setupIntentCreateRespMap);
+            }
+
+            @Override
+            public void onFailure(@Nonnull TerminalException e) {
+                lastSetupIntent = null;
+                WritableMap setupIntentCreateRespMap = Arguments.createMap();
+                setupIntentCreateRespMap.putString(ERROR, e.getErrorMessage());
+                sendEventWithName(EVENT_SETUP_INTENT_CREATION, setupIntentCreateRespMap);
+            }
+        });
+    }
+
     @ReactMethod
     public void retrieveSetupIntent(String clientSecret) {
         if (clientSecret != null) {
@@ -581,7 +643,7 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
                 public void onSuccess(@Nonnull SetupIntent setupIntent) {
                     lastSetupIntent = setupIntent;
                     WritableMap setupRetrieveRespMap = Arguments.createMap();
-                    setupRetrieveRespMap.putMap(INTENT, serializeSetupIntent(setupIntent)); 
+                    setupRetrieveRespMap.putMap(INTENT, serializeSetupIntent(setupIntent));
                     sendEventWithName(EVENT_SETUP_INTENT_RETRIEVAL, setupRetrieveRespMap);
                 }
 
@@ -785,7 +847,7 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
 
     @ReactMethod
     public void cancelCollectSetupIntentPaymentMethod() {
-        if (pendingCreateSetupIntent != null ) {
+        if (pendingCreateSetupIntent != null) {
             pendingCreateSetupIntent.cancel(new Callback() {
                 @Override
                 public void onSuccess() {

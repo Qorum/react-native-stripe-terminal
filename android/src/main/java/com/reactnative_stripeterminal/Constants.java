@@ -35,6 +35,7 @@ public class Constants {
     public static final String EVENT_PROCESS_PAYMENT = "paymentProcess";
     public static final String EVENT_PAYMENT_INTENT_CANCEL = "paymentIntentCancel";
     public static final String EVENT_SETUP_INTENT_RETRIEVAL = "setupIntentRetrieval";
+    public static final String EVENT_SETUP_INTENT_CREATION = "setupIntentCreation";
     public static final String EVENT_SETUP_INTENT_PAYMENT_METHOD_COLLECTION = "setupIntentPaymentMethodCollection";
     public static final String EVENT_CONFIRM_SETUP_INTENT = "confirmSetupIntent";
     public static final String EVENT_CANCEL_COLLECT_SETUP_INTENT_PAYMENT_METHOD = "cancelCollectSetupIntentPaymentMethod";
@@ -81,6 +82,7 @@ public class Constants {
     public static final String DESCRIPTION = "description";
     public static final String STATEMENT_DESCRIPTOR = "statementDescriptor";
     public static final String RECEIPT_EMAIL = "receiptEmail";
+    public static final String USAGE = "usage";
     public static final String UPDATE ="update";
     public static final String UPDATE_TYPE = "updateType";
     public static final String CARD = "card";

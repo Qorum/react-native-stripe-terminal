@@ -220,6 +220,16 @@ class StripeTerminal {
     );
   }
 
+  createSetupIntent(options) {
+    return this._wrapPromiseReturn(
+      "setupIntentCreation",
+      () => {
+        RNStripeTerminal.createSetupIntent(options);
+      },
+      "intent"
+    );
+  }
+
   retrievePaymentIntent(clientSecret) {
     return this._wrapPromiseReturn(
       "paymentIntentRetrieval",

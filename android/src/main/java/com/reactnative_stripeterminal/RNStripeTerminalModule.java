@@ -187,6 +187,7 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
         setupIntentMap.putString(STRIPE_ID, setupIntent.getId());
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZ");
         setupIntentMap.putString(CREATED, simpleDateFormat.format(new Date(setupIntent.getCreated())));
+        setupIntentMap.putString(PAYMENT_METHOD_ID, setupIntent.getPaymentMethodId());
         return setupIntentMap;
     }
 

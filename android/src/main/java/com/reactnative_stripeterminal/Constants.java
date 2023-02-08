@@ -70,6 +70,7 @@ public class Constants {
     public static final String APPLICATION_FEE_AMOUNT = "applicationFeeAmount";
     public static final String TEXT="text";
     public static final String STRIPE_ID = "stripeId";
+    public static final String PAYMENT_METHOD_ID = "paymentMethodId";
     public static final String CREATED = "created";
     public static final String METADATA ="metadata";
     public static final String INTENT="intent";

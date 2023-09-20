@@ -93,9 +93,12 @@ public class Constants {
     //Plugin Constants
     static{
         constants.put("DeviceTypeChipper2X", DeviceType.CHIPPER_2X.ordinal());
+        constants.put("DeviceTypeStripeS700", DeviceType.STRIPE_S700.ordinal());
+        constants.put("DeviceTypeStripeS700Devkit", DeviceType.STRIPE_S700_DEVKIT.ordinal());
         constants.put("DiscoveryMethodBluetoothScan", DiscoveryMethod.BLUETOOTH_SCAN.ordinal());
         constants.put("DiscoveryMethodBluetoothProximity", DiscoveryMethod.BLUETOOTH_SCAN.ordinal()); //Not applicable for Android SDK
         constants.put("DiscoveryMethodUSB", DiscoveryMethod.USB.ordinal());
+        constants.put("DiscoveryMethodInternet", DiscoveryMethod.INTERNET.ordinal());
         constants.put("PaymentIntentStatusRequiresPaymentMethod", PaymentIntentStatus.REQUIRES_PAYMENT_METHOD.ordinal());
         constants.put("PaymentIntentStatusRequiresConfirmation", PaymentIntentStatus.REQUIRES_CONFIRMATION.ordinal());
         constants.put("PaymentIntentStatusRequiresCapture", PaymentIntentStatus.REQUIRES_CAPTURE.ordinal());

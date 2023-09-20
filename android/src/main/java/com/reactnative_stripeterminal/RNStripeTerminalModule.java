@@ -227,7 +227,7 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
                 card = new SimulatedCard(cardNumber);
             }
 
-            SimulatorConfiguration newConfig = new SimulatorConfiguration(readerUpdate, card);
+            SimulatorConfiguration newConfig = new SimulatorConfiguration(readerUpdate, card, 0L);
             Terminal.getInstance().setSimulatorConfiguration(newConfig);
             promise.resolve(serializeSimulatorConfig(newConfig));
         } catch (Exception e) {
@@ -242,9 +242,12 @@ public class RNStripeTerminalModule extends ReactContextBaseJavaModule implement
             DiscoveryMethod discMethod;
             if (method == DiscoveryMethod.USB.ordinal()) {
                 discMethod = DiscoveryMethod.USB;
+            } else if (method == DiscoveryMethod.INTERNET.ordinal()) {
+                discMethod = DiscoveryMethod.INTERNET;
             } else {
                 discMethod = DiscoveryMethod.BLUETOOTH_SCAN;
             }
+
             DiscoveryConfiguration discoveryConfiguration = new DiscoveryConfiguration(0, discMethod, isSimulated);
             Callback statusCallback = new Callback() {
                 @Override

@@ -15,12 +15,15 @@ export const simulatedCardTypes = filterAndRenameObj(constants, "Card");
 class StripeTerminal {
   // Device types
   DeviceTypeChipper2X = RNStripeTerminal.DeviceTypeChipper2X;
+  DeviceTypeStripeS700 = RNStripeTerminal.DeviceTypeStripeS700;
+  DeviceTypeStripeS700Devkit = RNStripeTerminal.DeviceTypeStripeS700Devkit;
 
   // Discovery methods
   DiscoveryMethodBluetoothScan = RNStripeTerminal.DiscoveryMethodBluetoothScan;
   DiscoveryMethodBluetoothProximity =
     RNStripeTerminal.DiscoveryMethodBluetoothProximity;
   DiscoveryMethodUSB = RNStripeTerminal.DiscoveryMethodUSB;
+  DiscoveryMethodInternet = RNStripeTerminal.DiscoveryMethodInternet;
 
   // Payment intent statuses
   PaymentIntentStatusRequiresPaymentMethod =
